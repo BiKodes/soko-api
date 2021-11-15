@@ -23,13 +23,14 @@ class Common(Configuration):
         'rest_framework_simplejwt',  # token authentication
         'django_filters',            # for filtering rest endpoints
         "corsheaders",
-
+        "drf_yasg",
 
         # Your apps
         'src.users',
         'src.products',
+        'src.cart',
+        'src.books',
        
-
     )
 
     CORS_ALLOWED_ORIGINS = [

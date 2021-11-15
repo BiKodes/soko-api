@@ -11,6 +11,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+
 from .users.views import UserViewSet, UserCreateViewSet
 
 
@@ -18,10 +19,15 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    path('api/v1/', include("src.products.urls", namespace="products_app")),
+
+    path('api/', include("src.products.urls", namespace="products_app")),
+    path('api/', include("src.books.urls", namespace="books_app")),
+    path('api/', include("src.cart.urls", namespace="cart_app")),
+
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 

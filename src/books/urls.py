@@ -1,17 +1,15 @@
 from django.urls import path
 
-app_name="products_app"
-
-from .views import (
-    ListCategory, 
-    DetailCategory,  
-    ListProduct, 
-    DetailProduct,
-)
-
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
+app_name="books_app"
+
+from .views import (
+    ListBook, 
+    DetailBook, 
+)
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -27,11 +25,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('categories', ListCategory.as_view(), name='categorie'),
-    path('categories/<int:pk>/', DetailCategory.as_view(), name='singlecategory'),
     
-    path('products', ListProduct.as_view(), name='products'),
-    path('products/<int:pk>/', DetailProduct.as_view(), name='singleproduct'),
+    path('books', ListBook.as_view(), name='books'),
+    path('books/<int:pk>/', DetailBook.as_view(), name='singlebook'),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

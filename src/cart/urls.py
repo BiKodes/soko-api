@@ -1,12 +1,10 @@
 from django.urls import path
 
-app_name="products_app"
+app_name="cart_app"
 
 from .views import (
-    ListCategory, 
-    DetailCategory,  
-    ListProduct, 
-    DetailProduct,
+    ListCart, 
+    DetailCart
 )
 
 from rest_framework import permissions
@@ -27,13 +25,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('categories', ListCategory.as_view(), name='categorie'),
-    path('categories/<int:pk>/', DetailCategory.as_view(), name='singlecategory'),
-    
-    path('products', ListProduct.as_view(), name='products'),
-    path('products/<int:pk>/', DetailProduct.as_view(), name='singleproduct'),
+    path('carts', ListCart.as_view(), name='allcarts'),
+    path('carts/<int:pk>', DetailCart.as_view(), name='cartdetail'),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
 ]
